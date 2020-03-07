@@ -62,18 +62,7 @@ class User_model extends CI_Model
 
         $this->db->where('email', $post["email"])
                 ->or_where('username', $post["email"]);
-        $user = $this->db->get($this->_table)->row();
-
-        if($user){
-            $isPasswordTrue = password_verify($post["password"], $user->password);
-            $isAdmin = $user->role == "admin";
-            if($isPasswordTrue && $isAdmin){ 
-                $this->session->set_userdata(['user_logged' => $user]);
-                $this->_updateLastLogin($user->user_id);
-                return true;
-            }
-		}
-		return false;
+        return $user = $this->db->get($this->_table)->row();
     }
 
     public function isNotLogin(){

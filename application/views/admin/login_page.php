@@ -20,16 +20,29 @@
                 <p class="lead">Silahkan masuk ke Panel Admin</p>
             </div>
         </div>
+        <div>
+             <?php if($this->session->userdata('message')){  ?>
+                <?php if($this->session->userdata('message')['type'] == 'error'){  ?>
+                    <div class="alert alert-danger">
+                        <?php echo implode('\n', $this->session->userdata('message')['message']) ?>
+                    </div>
+                <?php } else { ?>
+                    <div class="alert alert-success">
+                        <?php echo implode('\n', $this->session->userdata('message')['message']) ?>
+                    </div>
+                <?php } ?>
+            <?php } ?>
+        </div>
         <div class="row">
             <div class="col-12 col-md-5 mx-auto mt-5">
                 <form action="<?= site_url('admin/login') ?>" method="POST">
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="text" class="form-control" name="email" placeholder="Pakai username juga bisa.." required />
+                        <input type="text" class="form-control" name="email" placeholder="Pakai username juga bisa.."/>
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" class="form-control" name="password" placeholder="Password.." required />
+                        <input type="password" class="form-control" name="password" placeholder="Password.."/>
                     </div>
                     <div class="form-group">
                         <div class="d-flex justify-content-between">
